@@ -8,7 +8,9 @@ import { useCalculator } from '@/hooks/useCalculator'
 
 const CalculatorApp = () => {
 
-  const { formula, buildNumber, clean, toggleSign, deleteLast } = useCalculator();
+  const { formula, prevNumber,
+    buildNumber, clean, toggleSign, deleteLast, divideOperation, multiplyOperation, subtractOperation, addOperation, calculateSubResult, calculateResult
+  } = useCalculator();
 
   return (
     <View style={globalStyles.calculatorContainer}>
@@ -16,8 +18,18 @@ const CalculatorApp = () => {
       {/* Resultados */}
       <View style={{ paddingHorizontal: 30, paddingBottom: 20 }}>
         <ThemeText variant='h1' >{formula}</ThemeText>
-        <ThemeText variant='h2' >250</ThemeText>
       </View>
+
+      {
+        formula === prevNumber ?
+          (
+            <ThemeText variant='h2' > </ThemeText>
+          )
+          :
+          (
+            <ThemeText variant='h2' >{prevNumber}</ThemeText>
+          )
+      }
 
       {/* Botones */}
       <View style={globalStyles.row}>
@@ -42,7 +54,7 @@ const CalculatorApp = () => {
         <CalculatorButton
           label='÷'
           color={Colors.orange}
-          onPress={() => console.log('÷')}
+          onPress={divideOperation}
         />
       </View>
 
@@ -65,7 +77,7 @@ const CalculatorApp = () => {
         <CalculatorButton
           label='x'
           color={Colors.orange}
-          onPress={() => console.log('x')}
+          onPress={multiplyOperation}
         />
       </View>
 
@@ -88,7 +100,7 @@ const CalculatorApp = () => {
         <CalculatorButton
           label='-'
           color={Colors.orange}
-          onPress={() => console.log('-')}
+          onPress={subtractOperation}
         />
       </View>
 
@@ -111,7 +123,7 @@ const CalculatorApp = () => {
         <CalculatorButton
           label='+'
           color={Colors.orange}
-          onPress={() => console.log('+')}
+          onPress={addOperation}
         />
       </View>
 
@@ -130,7 +142,7 @@ const CalculatorApp = () => {
         <CalculatorButton
           label='='
           color={Colors.orange}
-          onPress={() => console.log('=')}
+          onPress={calculateResult}
         />
       </View>
 
